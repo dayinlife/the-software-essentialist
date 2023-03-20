@@ -1,10 +1,10 @@
-interface IPasswordResult {
+export interface IPasswordResult {
   isValid: boolean,
   errors: string[];
 }
 
 export function validatePassword(password: string): IPasswordResult {
-  let passwordResult: IPasswordResult = { isValid: false, errors: [] };
+  let passwordResult: IPasswordResult = { isValid: true, errors: [] };
   let pattern1 = /\d/;
   let pattern2 = /[A-Z]/;
   if (password.length < 5 || password.length > 15) {
@@ -18,9 +18,9 @@ export function validatePassword(password: string): IPasswordResult {
   if (!pattern2.test(password)) {
     passwordResult.errors.push("Password should contain at least one upper case letter");
   }
-  //assuming user enters correct password  
-  if (passwordResult.errors.length == 0 && password == password) {
-    passwordResult.isValid = true;
+
+  if (passwordResult.errors.length > 0) {
+    passwordResult.isValid = false;
   } 
   
   return passwordResult;
