@@ -5,17 +5,17 @@ export interface IPasswordResult {
 
 export function validatePassword(password: string): IPasswordResult {
   const passwordResult: IPasswordResult = { isValid: true, errors: [] };
-  const passwordPattern1 = /\d/;
-  const passwordPattern2 = /[A-Z]/;
+  const isDigit = /\d/;
+  const isUpperCase = /[A-Z]/;
   if (password.length < 5 || password.length > 15) {
     passwordResult.errors.push("Password should be between 5 and 15 characters long");
   }
 
-  if (!passwordPattern1.test(password)) {
+  if (!isDigit.test(password)) {
     passwordResult.errors.push("Password should contain atleast 1 digit");
   }
 
-  if (!passwordPattern2.test(password)) {
+  if (!isUpperCase.test(password)) {
     passwordResult.errors.push("Password should contain at least one upper case letter");
   }
 
